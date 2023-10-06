@@ -37,7 +37,7 @@ namespace rut::miit
 		SingleList();
 
 		/*
-		@brief Диструктор класса SingleList.
+		@brief Деструктор класса SingleList.
 		*/
 		~SingleList();
 
@@ -122,9 +122,6 @@ namespace rut::miit
 		bool operator==(SingleList<T>& second);
 
 	private:
-		/*
-		@brief структура Node
-		*/
 		size_t size;
 		Node<T>* head;
 	};
