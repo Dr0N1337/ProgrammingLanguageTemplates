@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 #include "../TemplateList/SingleList.h"
+#include <string>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace rut::miit;
@@ -72,6 +73,16 @@ namespace SinglyLinkedListTest
 
 			list1 = list2;
 			Assert::IsTrue(list1 == list2);
+		}
+		TEST_METHOD(String_ValidData_Succeess)
+		{
+			SingleList<std::string> a1;
+			std::string str1 = "qwe";
+			a1.pushBack(str1);
+			SingleList<std::string> a2;
+			a2.pushBack(str1);
+			a2 = a1;
+            Assert::IsTrue(a1 == a2);
 		}
 	};
 }
