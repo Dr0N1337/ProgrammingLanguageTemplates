@@ -6,27 +6,6 @@
 
 namespace rut::miit
 {
-	template<typename T>
-	struct Node
-	{
-		/*
-		@brief Функция, перегружающая оператор ==.
-		@param Другие данные, которые будут скопированы на новый Node.
-		*/
-		void operator= (const T& otherData);
-
-		/*
-		@brief Функция, перегружающая оператор [].
-		@param Данные содержашиеся в Node.
-		@param pNext указывает на следующий Node.
-		*/
-		Node(T& data = 0, Node<T>* pNext = nullptr);
-
-		Node<T>* pNext;
-		T data;
-	};
-
-
 	template <typename T>
 	class SingleList
 	{
@@ -122,21 +101,38 @@ namespace rut::miit
 		bool operator==(SingleList<T>& second);
 
 	private:
+		template<typename T>
+		struct Node
+		{
+			/*
+			@brief Функция, перегружающая оператор ==.
+			@param Другие данные, которые будут скопированы на новый Node.
+			*/
+			//void operator= (const T& otherData);
+
+			/*
+			@brief Функция, перегружающая оператор [].
+			@param Данные содержашиеся в Node.
+			@param pNext указывает на следующий Node.
+			*/
+			Node(T& data = 0, Node<T>* pNext = nullptr)
+				: data(data), pNext(pNext)
+			{}
+
+			Node<T>* pNext;
+			T data;
+		};
 		size_t size;
 		Node<T>* head;
 	};
 
-	template <typename T>
-	Node<T>::Node(T& data, Node* pNext)
-		: data(data), pNext(pNext)
-	{
-	}
-
+	/*
 	template <typename T>
 	void Node<T>::operator=(const T& otherData)
 	{
 		this->data = otherData;
 	}
+	*/
 
 	template <typename T>
 	SingleList<T>::SingleList()
