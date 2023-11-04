@@ -10,93 +10,93 @@ namespace rut::miit
 	class SingleList
 	{
 	public:
-		/*
-		@brief Инициализирует класс SingleList.
+		/**
+		*@brief Инициализирует класс SingleList.
 		*/
 		SingleList();
 
-		/*
-		@brief Деструктор класса SingleList.
+		/**
+		*@brief Деструктор класса SingleList.
 		*/
 		~SingleList();
 
-		/*
-		@brief Копирует объект класса SingleList.
-		@param Другой лист, который будет скопирован.
+		/**
+		*@brief Копирует объект класса SingleList.
+		*@param Другой лист, который будет скопирован.
 		*/
 		SingleList(const SingleList& second);
 
-		/*
-		@brief Перемещает объект класса SingleList в другое место.
-		@param Другой лист, который будет перемещен.
+		/**
+		*@brief Перемещает объект класса SingleList в другое место.
+		*@param Другой лист, который будет перемещен.
 		*/
 		SingleList(SingleList&& second) noexcept;
 
-		/*
+		/**
 		@brief Функция, которая удаляет Node перед списком.
 		*/
 		void popFront();
 
-		/*
-		@brief Удаляет все Node.
+		/**
+		*@brief Удаляет все Node.
 		*/
 		void clear();
 
-		/*
-		@brief Функция которая добавляет Node в конец списка.
-		@param Данные которые будут добавлены.
+		/**
+		*@brief Функция которая добавляет Node в конец списка.
+		*@param Данные которые будут добавлены.
 		*/
 		void pushBack(T data);
 
-		/*
-		@brief Функция которая добавляет Node перед списком.
-		@param Данные которые будут добавлены.
+		/**
+		*@brief Функция которая добавляет Node перед списком.
+		*@param Данные которые будут добавлены.
 		*/
 		void pushFront(T data);
 
-		/*
-		@brief Функция которая возвращает размер листа.
-		@return Размер списка.
+		/**
+		*@brief Функция которая возвращает размер листа.
+		*@return Размер списка.
 		*/
 		size_t getSize() const noexcept;
 
-		/*
-		@brief Функция, перегружающая оператор [].
-		@param Индексирует номер элемента.
-		@return Значение с заданным индексом.
+		/**
+		*@brief Функция, перегружающая оператор [].
+		*@param Индексирует номер элемента.
+		*@return Значение с заданным индексом.
 		*/
 		T& operator[](int index);
 
-		/*
-		@brief Функция, которая проверяет размер коллекции.
-		@return Значение true, если коллекция очищена, значение false, если коллекция не очищена.
+		/**
+		*@brief Функция, которая проверяет размер коллекции.
+		*@return Значение true, если коллекция очищена, значение false, если коллекция не очищена.
 		*/
 		bool isEmpty() const noexcept;
 
-		/*
-		@brief Функция, которая преобразует коллекцию в строку.
-		@return Строку, состоящую из Nodes.
+		/**
+		*@brief Функция, которая преобразует коллекцию в строку.
+		*@return Строку, состоящую из Nodes.
 		*/
 		std::string toString();
 
-		/*
-		@brief Функция, перегружающая оператор ==.
-		@param Второй список, который будет скопирован.
-		@return Новый скопированный список.
+		/**
+		*@brief Функция, перегружающая оператор ==.
+		*@param Второй список, который будет скопирован.
+		*@return Новый скопированный список.
 		*/
 		SingleList<T>& operator=(const SingleList<T>& second);
 
-		/*
-		@brief Функция, перегружающая оператор ==.
-		@param Второй список, который будет перемещен.
-		@return Перемещенный список.
+		/**
+		*@brief Функция, перегружающая оператор ==.
+		*@param Второй список, который будет перемещен.
+		*@return Перемещенный список.
 		*/
 		SingleList<T>& operator=(SingleList<T>&& second) noexcept;
 
-		/*
-		@brief Функция, перегружающая оператор сравнения.
-		@param Сравнивает второй список.
-		@return Если содержимое списка равно второму списку то значение true и в противном случае значение false.
+		/**
+		*@brief Функция, перегружающая оператор сравнения.
+		*@param Сравнивает второй список.
+		*@return Если содержимое списка равно второму списку то значение true и в противном случае значение false.
 		*/
 		bool operator==(SingleList<T>& second);
 
@@ -104,18 +104,12 @@ namespace rut::miit
 		template<typename T>
 		struct Node
 		{
-			/*
-			@brief Функция, перегружающая оператор ==.
-			@param Другие данные, которые будут скопированы на новый Node.
+			/**
+			*@brief Функция, перегружающая оператор [].
+			*@param Данные содержашиеся в Node.
+			*@param pNext указывает на следующий Node.
 			*/
-			//void operator= (const T& otherData);
-
-			/*
-			@brief Функция, перегружающая оператор [].
-			@param Данные содержашиеся в Node.
-			@param pNext указывает на следующий Node.
-			*/
-			Node(T& data = 0, Node<T>* pNext = nullptr)
+			Node(T& data, Node<T>* pNext = nullptr)
 				: data(data), pNext(pNext)
 			{}
 
@@ -125,14 +119,6 @@ namespace rut::miit
 		size_t size;
 		Node<T>* head;
 	};
-
-	/*
-	template <typename T>
-	void Node<T>::operator=(const T& otherData)
-	{
-		this->data = otherData;
-	}
-	*/
 
 	template <typename T>
 	SingleList<T>::SingleList()
@@ -271,6 +257,7 @@ namespace rut::miit
 
 	template <typename T>
 	SingleList<T>::SingleList(const SingleList<T>& second)
+		:SingleList<T>()
 	{
 		if (this->head == nullptr)
 		{
